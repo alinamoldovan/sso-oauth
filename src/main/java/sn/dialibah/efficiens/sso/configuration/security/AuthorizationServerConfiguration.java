@@ -1,7 +1,6 @@
 package sn.dialibah.efficiens.sso.configuration.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -22,7 +21,6 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
 	@Autowired
-	@Qualifier("authenticationManagerBean")
 	AuthenticationManager authenticationManager;
 
 	@Autowired
@@ -35,8 +33,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory()
 						.withClient("clientId")
-						.authorizedGrantTypes("implicit")
-						.scopes("read")
+						.authorizedGrantTypes("authorization_code")
+						.scopes("read", "trust")
 						.autoApprove(true)
 						.and()
 						.withClient("cliendIdPwd")
