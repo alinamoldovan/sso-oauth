@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import sn.dialibah.efficiens.sso.useraccount.UserController;
 import sn.dialibah.efficiens.sso.useraccount.entities.UserAccountEntity;
@@ -31,13 +31,16 @@ public class UserAccountService implements IUserAccountService {
 	@Autowired
 	private UserAccountRepository userAccountRepository;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	@Override
 	public User create(User user) {
 		LOGGER.debug("{} create user account -> {}", LOG_HEADER, user);
 		final UserAccountEntity userAccountEntity = this.mapper.map(user, UserAccountEntity.class);
 		userAccountEntity.setCreationDateTime(LocalDateTime.now());
 		userAccountEntity.setLastModificationDateTime(LocalDateTime.now());
-		userAccountEntity.setHashedPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+		userAccountEntity.setHashedPassword(this.passwordEncoder.encode(user.getPassword()));
 		LOGGER.debug("{} user account to save -> {}", LOG_HEADER, userAccountEntity);
 		UserAccountEntity saved;
 		try {

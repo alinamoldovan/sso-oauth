@@ -27,9 +27,7 @@ public class UserController {
 	private IUserAccountService userAccountService;
 
 	@RequestMapping(value = "register", method = RequestMethod.POST)
-
 	public ResponseEntity<User> addUser(@RequestBody User user) {
-
 		LOGGER.debug("{} add new user {}", LOG_HEADER, user);
 		return new ResponseEntity<>(this.userAccountService.create(user), HttpStatus.OK);
 	}

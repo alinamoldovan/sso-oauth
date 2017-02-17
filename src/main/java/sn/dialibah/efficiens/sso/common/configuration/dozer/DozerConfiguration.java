@@ -1,4 +1,4 @@
-package sn.dialibah.efficiens.sso.common.configuration;
+package sn.dialibah.efficiens.sso.common.configuration.dozer;
 
 import org.dozer.DozerBeanMapper;
 import org.springframework.context.annotation.Bean;
