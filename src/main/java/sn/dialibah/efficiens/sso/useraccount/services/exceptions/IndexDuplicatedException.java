@@ -5,7 +5,7 @@ import sn.dialibah.efficiens.sso.common.exceptions.AbstractException;
 
 /**
  * by osow on 17/02/17.
- * for neo9
+ * for SIBusiness
  */
 public class IndexDuplicatedException extends AbstractException {
 	public IndexDuplicatedException(String message) {

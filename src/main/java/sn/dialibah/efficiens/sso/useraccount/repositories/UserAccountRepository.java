@@ -7,7 +7,7 @@ import java.util.Optional;
 
 /**
  * by osow on 17/02/17.
- * for neo9
+ * for SIBusiness
  */
 public interface UserAccountRepository extends PagingAndSortingRepository<UserAccountEntity, String> {
 	Optional<UserAccountEntity> findByUsername(String username);

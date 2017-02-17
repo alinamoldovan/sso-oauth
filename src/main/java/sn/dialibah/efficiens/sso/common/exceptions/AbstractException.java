@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 /**
  * by osow on 17/02/17.
- * for neo9
+ * for SIBusiness
  */
 public abstract class AbstractException extends RuntimeException {
 	protected ResponseEntity forwardedResponse;

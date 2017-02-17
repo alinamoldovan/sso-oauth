@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 /**
  * by osow on 17/02/17.
- * for neo9
+ * for SIBusiness
  */
 public class LocalDateTimeCoverter extends DozerConverter<LocalDateTime, LocalDateTime> {
 

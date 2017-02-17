@@ -4,7 +4,7 @@ import sn.dialibah.efficiens.sso.useraccount.models.User;
 
 /**
  * by osow on 17/02/17.
- * for neo9
+ * for SIBusiness
  */
 public interface IUserAccountService {
 

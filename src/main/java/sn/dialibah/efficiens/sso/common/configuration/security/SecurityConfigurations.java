@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * by osow on 17/02/17.
- * for neo9
+ * for SIBusiness
  */
 @Configuration
 public class SecurityConfigurations {

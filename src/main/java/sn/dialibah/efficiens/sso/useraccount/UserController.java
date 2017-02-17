@@ -14,7 +14,7 @@ import sn.dialibah.efficiens.sso.useraccount.services.IUserAccountService;
 
 /**
  * by osow on 16/02/17.
- * for neo9
+ * for SIBusiness
  */
 @RestController
 @RequestMapping("users")

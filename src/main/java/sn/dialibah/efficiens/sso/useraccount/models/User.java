@@ -8,7 +8,7 @@ import sn.dialibah.efficiens.sso.common.models.EntityCore;
 
 /**
  * by osow on 16/02/17.
- * for neo9
+ * for SIBusiness
  */
 
 @Data
