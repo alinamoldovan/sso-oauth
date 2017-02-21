@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * for SIBusiness
  */
 @Configuration
-public class SecurityConfigurations {
+public class SecurityConfigurations{
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {

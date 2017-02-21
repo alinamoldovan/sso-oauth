@@ -14,13 +14,14 @@ import sn.dialibah.efficiens.sso.useraccount.repositories.UserAccountRepository;
 import sn.dialibah.efficiens.sso.useraccount.services.exceptions.IndexDuplicatedException;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * by osow on 17/02/17.
  * for SIBusiness
  */
 @Service
-public class UserAccountService implements IUserAccountService {
+public class UserAccountService  implements IUserAccountService {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 	public static final String LOG_HEADER = "[SSO][USER ACCOUNT SERVICE]";
@@ -38,8 +39,9 @@ public class UserAccountService implements IUserAccountService {
 	public User create(User user) {
 		LOGGER.debug("{} create user account -> {}", LOG_HEADER, user);
 		final UserAccountEntity userAccountEntity = this.mapper.map(user, UserAccountEntity.class);
-		userAccountEntity.setCreationDateTime(LocalDateTime.now());
-		userAccountEntity.setLastModificationDateTime(LocalDateTime.now());
+		LocalDateTime currentDate = LocalDateTime.now();
+		userAccountEntity.setCreationDateTime(currentDate);
+		userAccountEntity.setLastModificationDateTime(currentDate);
 		userAccountEntity.setHashedPassword(this.passwordEncoder.encode(user.getPassword()));
 		LOGGER.debug("{} user account to save -> {}", LOG_HEADER, userAccountEntity);
 		UserAccountEntity saved;
@@ -51,4 +53,18 @@ public class UserAccountService implements IUserAccountService {
 
 		return this.mapper.map(saved, User.class);
 	}
+
+	@Override
+	public Optional<User> getByUsername(String username) {
+		LOGGER.debug("{} get user with username -> {}", LOG_HEADER, username);
+		final Optional<UserAccountEntity> maybeUserEntity  = userAccountRepository.findByUsername(username);
+		if(maybeUserEntity.isPresent()){
+			return Optional.ofNullable(mapper.map(maybeUserEntity.get(), User.class));
+		}
+		return Optional.ofNullable(maybeUserEntity
+				.map(userAccountEntity -> mapper.map(userAccountEntity, User.class))
+				.orElse(null));
+	}
+
+
 }
